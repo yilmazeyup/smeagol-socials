@@ -222,6 +222,10 @@ td .handle{display:block;color:var(--muted);font-size:.82rem}
 .vid .cap-row{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
 .vid h3{font-family:var(--f-body);text-transform:none;font-weight:600;font-size:1.02rem;letter-spacing:0;line-height:1.35}
 .vid p{font-size:.88rem;color:var(--muted)}
+.mx{display:flex;flex-wrap:wrap;gap:6px}
+.mx button{background:none;border:1px solid var(--line-2);color:var(--muted);font:600 .68rem/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;padding:9px 10px;cursor:pointer}
+.mx button[aria-pressed="true"]{border-color:var(--gold);color:var(--gold)}
+.mx button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .vid details{border-top:1px solid var(--line);padding-top:10px}
 .vid summary{cursor:pointer;font-weight:600;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
 .vid summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
@@ -534,13 +538,13 @@ dialog::backdrop{background:rgba(0,0,0,.8)}
 <section id="reel">
   <div class="wrap">
     <div class="reel">
-      <video id="reel-video" src="video/reel.mp4" poster="video/poster.jpg" controls muted loop playsinline preload="metadata"></video>
+      <div style="display:grid;gap:10px;align-content:start"><video id="reel-video" src="video/hoe-wil-jij-hem-A.mp4" poster="video/poster.jpg" controls loop playsinline preload="metadata"></video><div class="mx" id="mx-feat"></div></div>
       <div style="display:grid;gap:18px;min-width:0">
         <div class="eyebrow"><span data-l="tr">Video 1 / 7 · 12 saniye</span><span data-l="nl">Video 1 / 7 · 12 seconden</span></div>
         <h2 data-l="tr">"Hoe wil jij 'm?"</h2>
         <h2 data-l="nl">"Hoe wil jij 'm?"</h2>
-        <p class="lead" data-l="tr">En çok izlenen videonuzun konusu, yeni görsel dille. Gerçek fotoğraflar üzerinde kodla yapılmış animasyon; ses yok, paylaşırken Instagram'da trend bir müzik seçilir. Yeni çekimlerle aynı kalıpta her hafta bir bölüm çıkar.</p>
-        <p class="lead" data-l="nl">Het onderwerp van jullie best bekeken video, in de nieuwe beeldtaal. Animatie op echte foto's; zonder geluid, bij het plaatsen kies je een trending track in Instagram. Met nieuwe opnames maken we elke week een aflevering in dit format.</p>
+        <p class="lead" data-l="tr">En çok izlenen videonuzun konusu, yeni görsel dille. Gerçek fotoğraflar üzerinde kodla yapılmış animasyon; bu video için özel üretilmiş iki müzik seçeneği var (A ve B). Yeni çekimlerle aynı kalıpta her hafta bir bölüm çıkar.</p>
+        <p class="lead" data-l="nl">Het onderwerp van jullie best bekeken video, in de nieuwe beeldtaal. Animatie op echte foto's, met twee muziekopties (A en B) die speciaal voor deze video zijn gemaakt. Met nieuwe opnames maken we elke week een aflevering in dit format.</p>
         <div class="beats" id="beats"></div>
         <details class="vid" style="display:block"><summary>Caption · NL</summary><pre>Hoe wil jij 'm? 🥩🔥
 Van rare tot well-done: Kenan heeft een duidelijke mening. Jij ook? Zet je gaarheid in de comments. ⬇️
@@ -552,8 +556,8 @@ Van rare tot well-done: Kenan heeft een duidelijke mening. Jij ook? Zet je gaarh
     </div>
     <div class="sub-head" style="margin-top:80px">
       <div style="display:grid;gap:10px"><div class="eyebrow"><span data-l="tr">Video paketi</span><span data-l="nl">Videopakket</span></div><h3 data-l="tr">Altı reel daha, hepsi yayına hazır</h3><h3 data-l="nl">Nog zes reels, allemaal klaar om te posten</h3></div>
-      <p class="muted" style="max-width:56ch;font-size:.92rem" data-l="tr">Her videonun kendi kurgusu var; hepsi Smeagol'ün kendi fotoğraflarıyla, kodla canlandırıldı. Ses yok: paylaşırken Instagram ve TikTok'ta trend bir müzik seçilir. 1080×1920, Instagram Reels ve TikTok için.</p>
-      <p class="muted" style="max-width:56ch;font-size:.92rem" data-l="nl">Elke video heeft een eigen opbouw; allemaal geanimeerd op Smeagol's eigen foto's. Zonder geluid: bij het plaatsen kies je een trending track in Instagram of TikTok. 1080×1920, voor Instagram Reels en TikTok.</p>
+      <p class="muted" style="max-width:56ch;font-size:.92rem" data-l="tr">Her videonun kendi kurgusu var; hepsi Smeagol'ün kendi fotoğraflarıyla, kodla canlandırıldı. Her birine iki enstrümantal müzik üretildi: düğmelerle A ve B arasında geçip seçin. Kendi müziğimiz olduğu için Instagram işletme hesaplarındaki şarkı kısıtlamasına takılmaz. 1080×1920, Instagram Reels ve TikTok için.</p>
+      <p class="muted" style="max-width:56ch;font-size:.92rem" data-l="nl">Elke video heeft een eigen opbouw; allemaal geanimeerd op Smeagol's eigen foto's. Voor elke video zijn twee instrumentale tracks gemaakt: kies met de knoppen tussen A en B. Omdat het eigen muziek is, heb je geen last van de muziekbeperkingen voor bedrijfsaccounts op Instagram. 1080×1920, voor Instagram Reels en TikTok.</p>
     </div>
     <div class="vids" id="vids"></div>
     <div class="sub-head" style="margin-top:80px">
@@ -754,6 +758,28 @@ const TT = [
   ['2026-02-16', 2922, 'Grill schoon, handen schoon'], ['2026-02-24', 16100, 'Het is Ramadan'],
 ];
 const NOW_GRID = ['g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9'];
+const MUSIC = {
+  'hoe-wil-jij-hem': { def: 'A', A: { tr: 'Latin trap', nl: 'Latin trap' }, B: { tr: 'Orkestral', nl: 'Orkestraal' } },
+  avond: { def: 'A', A: { tr: 'Bossa nova', nl: 'Bossa nova' }, B: { tr: 'Piyano ve yaylılar', nl: 'Piano en strijkers' } },
+  reviews: { def: 'A', A: { tr: 'Akustik', nl: 'Akoestisch' }, B: { tr: 'Caz piyano trio', nl: 'Jazz-pianotrio' } },
+  gram: { def: 'B', A: { tr: 'Funk', nl: 'Funk' }, B: { tr: 'Epik fragman', nl: 'Epische trailer' } },
+  halal: { def: 'A', A: { tr: 'Darbuka ve trap', nl: 'Darbuka en trap' }, B: { tr: 'Stomp ve clap', nl: 'Stomp en clap' } },
+  'welke-cut': { def: 'A', A: { tr: 'Quiz show', nl: 'Quizshow' }, B: { tr: 'Hip hop', nl: 'Hiphop' } },
+  mocktails: { def: 'B', A: { tr: 'Tropical house', nl: 'Tropical house' }, B: { tr: 'Disko', nl: 'Disco' } },
+};
+const mxPick = {};
+function mxButtons(id) {
+  const m = MUSIC[id], cur = mxPick[id] || m.def;
+  return ['A', 'B'].map((x) => `<button type="button" data-mx="${id}" data-v="${x}" aria-pressed="${x === cur}">${L({ tr: 'Müzik', nl: 'Muziek' })} ${x} · ${L(m[x])}</button>`).join('');
+}
+function wireMx(root) {
+  root.querySelectorAll('[data-mx]').forEach((b) => (b.onclick = () => {
+    const id = b.dataset.mx, x = b.dataset.v; mxPick[id] = x;
+    const vid = id === 'hoe-wil-jij-hem' ? document.getElementById('reel-video') : b.closest('.vid').querySelector('video');
+    const was = !vid.paused; vid.src = `video/${id}-${x}.mp4`; if (was) vid.play().catch(() => {});
+    b.parentElement.querySelectorAll('button').forEach((o) => o.setAttribute('aria-pressed', o === b));
+  }));
+}
 const VIDEOS = [
   { id: 'avond', title: 'Een avond bij Smeagol', sec: 20, when: { tr: '6 Aralık', nl: '6 december' },
     d: { tr: "Sinema şeridi ve Instagram story çubukları; beş bölümde bir akşam (giriş, serin içecek, ızgara, şef, paylaşmak), sonunda Aralık rezervasyon çağrısı.", nl: 'Letterbox en story-balkjes; een avond in vijf hoofdstukken (binnenkomen, iets fris, de grill, de chef, samen delen), eindigt met een oproep om voor december te reserveren.' },
@@ -861,7 +887,9 @@ function renderLists() {
   document.getElementById('stories').innerHTML = STORIES.map((s) => `<figure style="margin:0;display:grid;gap:10px"><img src="img/stories/${s.id}.jpg" alt="" loading="lazy"><figcaption class="muted" style="font-size:.88rem">${L(s)}</figcaption></figure>`).join('');
   document.getElementById('beats').innerHTML = BEATS.map(([t, d]) => `<div class="beat"><b>${t}</b><span>${L(d)}</span></div>`).join('');
   document.getElementById('ideas').innerHTML = IDEAS.map((i) => `<div class="idea"><h3>${L(i.t)}</h3><p class="hook">${L(i.h)}</p><p>${L(i.w)}</p></div>`).join('');
-  document.getElementById('vids').innerHTML = VIDEOS.map((v, i) => `<article class="vid"><video src="video/${v.id}.mp4" poster="video/${v.id}.jpg" controls muted loop playsinline preload="none"></video><div class="cap-row"><h3>${i + 2}. ${v.title}</h3><span class="cap">${v.sec} s · ${L(v.when)}</span></div><p>${L(v.d)}</p><details><summary>Caption · NL</summary><pre>${v.nl}</pre></details></article>`).join('');
+  document.getElementById('vids').innerHTML = VIDEOS.map((v, i) => `<article class="vid"><video src="video/${v.id}-${mxPick[v.id] || MUSIC[v.id].def}.mp4" poster="video/${v.id}.jpg" controls loop playsinline preload="none"></video><div class="mx">${mxButtons(v.id)}</div><div class="cap-row"><h3>${i + 2}. ${v.title}</h3><span class="cap">${v.sec} s · ${L(v.when)}</span></div><p>${L(v.d)}</p><details><summary>Caption · NL</summary><pre>${v.nl}</pre></details></article>`).join('');
+  document.getElementById('mx-feat').innerHTML = mxButtons('hoe-wil-jij-hem');
+  wireMx(document.getElementById('vids')); wireMx(document.getElementById('mx-feat'));
   document.querySelectorAll('#posts [data-post]').forEach((b) => (b.onclick = () => openPost(+b.dataset.post)));
   document.querySelectorAll('#carousel [data-slide]').forEach((b) => (b.onclick = () => openPost(1, +b.dataset.slide)));
   // calendar
